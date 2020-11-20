@@ -1,0 +1,30 @@
+{% load static%}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lista Gastos</title>
+    <link rel="stylesheet" href="{% static 'gastos/css/estilo.css' %}">
+</head>
+
+<body>{% include 'gastos/links.html' %}<h1>Lista de Gastos</h1>
+    <h6>listaGastos.html</h6>
+    <table>
+        <tr>
+            <th>Descrição</th>
+            <th>Custo</th>
+            <th>Data</th>
+        </tr>{% for gasto in gastos %}<tr>
+            <td>{{ gasto.nome }}</td>
+            <td>{{ gasto.idade }}</td>
+            <td>{{ gasto.salario }}</td>
+            <td><a href="{% url 'gastos:atualiza-gasto' pk=gasto.id %}">Atualizar</a>| <a
+                    href="{% url 'gastos:apaga-gasto' pk=gasto.id %}">Excluir</a></td>
+        </tr>{% empty %}<tr>
+            <thcolspan="5">Ainda não tem gastos cadastrados</th>
+        </tr>{% endfor %}
+    </table>
+</body>
+
+</html>
