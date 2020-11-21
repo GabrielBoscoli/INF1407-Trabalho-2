@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cria Gasto</title>
+    <link rel="stylesheet" href="{% static 'gastos/css/estilo.css' %}" />
+  </head>
+
+  <body>
+    {% include 'gastos/links.html' %}
+    <h1>Cria um gasto</h1>
+    <h6>criaGasto.html</h6>
+    <form action="" method="POST">
+      {% csrf_token %}
+      <table class="formulario">
+        {{ formulario.as_table }}
+      </table>
+      <button type="submit">Cria gasto</button>
+    </form>
+  </body>
+</html>

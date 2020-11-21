@@ -11,6 +11,7 @@ from gastos import views
 app_name = "gastos"
 
 urlpatterns = [
+    path('cria/',  views.GastoCreateView.as_view(), name='cria-gasto'),
     path('lista/', views.GastoListView.as_view(), name="lista-gastos"),
     path('', views.GastoListView.as_view(), name="home-gastos"),
 ]
