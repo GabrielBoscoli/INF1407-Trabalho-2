@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Atualiza Gasto</title>
+    <link rel="stylesheet" href="{% static 'gastos/css/estilo.css' %}" />
+  </head>
+  <body>
+    {% include 'gastos/links.html' %}
+    <h1>Atualização de gastos</h1>
+    <form method="POST" class="formulario">
+      {% csrf_token%}
+      <table>
+        {{ gasto.as_table }}
+        <tr>
+          <td></td>
+          <td><input type="submit" value="Atualiza" /></td>
+        </tr>
+      </table>
+    </form>
+  </body>
+</html>

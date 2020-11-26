@@ -12,6 +12,7 @@ app_name = "gastos"
 
 urlpatterns = [
     path('cria/',  views.GastoCreateView.as_view(), name='cria-gasto'),
+    path('atualiza/<int:pk>/', views.GastoUpdateView.as_view(), name='atualiza-gasto'),
     path('lista/', views.GastoListView.as_view(), name="lista-gastos"),
     path('', views.GastoListView.as_view(), name="home-gastos"),
 ]

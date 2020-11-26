@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.generic.base import View
 from django.http.response import HttpResponseRedirect
 from django.urls.base import reverse_lazy
@@ -23,6 +23,24 @@ class GastoCreateView(View):
         if formulario.is_valid():
             gasto = formulario.save()
             gasto.save()
-            return HttpResponseRedirect(reverse_lazy("gasto:lista-gastos"))
+            return HttpResponseRedirect(reverse_lazy('gastos:lista-gastos'))
         else:
             return HttpResponseRedirect(reverse_lazy('gastos:cria-gasto'))
+        
+class GastoUpdateView(View):
+    def get(self, request, pk, *args, **kwargs):
+        gasto = Gasto.objects.get(pk=pk)
+        formulario = GastoModel2Form(instance=gasto)
+        context = {'gasto': formulario, }
+        return render(request, 'gastos/atualizaGasto.html', context)
+    
+    def post(self, request, pk, *args, **kwargs):
+        gasto = get_object_or_404(Gasto, pk=pk)
+        formulario = GastoModel2Form(request.POST, instance=gasto)
+        if formulario.is_valid():
+            gasto = formulario.save()
+            gasto.save()
+            return HttpResponseRedirect(reverse_lazy('gastos:lista-gastos'))
+        else:
+            context = { 'pessoa': formulario, }
+            return render(request, 'gastos/atualizaGasto.html', context)
