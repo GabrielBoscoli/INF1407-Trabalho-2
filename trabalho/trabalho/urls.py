@@ -15,10 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-#from trabalho import views
+from trabalho import views
 from django.urls.conf import include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('gastos/', include('gastos.urls')),
+    path('accounts/', views.homeSec, name='sec-home')
 ]
