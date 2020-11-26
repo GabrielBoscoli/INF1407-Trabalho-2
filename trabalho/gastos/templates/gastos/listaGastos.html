@@ -19,7 +19,8 @@
             <td>{{ gasto.descricao }}</td>
             <td>{{ gasto.custo }}</td>
             <td>{{ gasto.data }}</td>
-            <td><a href="{% url 'gastos:atualiza-gasto' pk=gasto.id %}">Atualizar</a>
+            <td><a href="{% url 'gastos:atualiza-gasto' pk=gasto.id %}">Atualizar</a>| <a
+                    href="{% url 'gastos:apaga-gasto' pk=gasto.id %}">Excluir</a></td>
         </tr>{% endfor %}{% else %}<tr>
             <thcolspan="5">Ainda não tem gastos cadastrados</th>
         </tr>{% endif %}

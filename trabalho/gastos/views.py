@@ -44,3 +44,15 @@ class GastoUpdateView(View):
         else:
             context = { 'pessoa': formulario, }
             return render(request, 'gastos/atualizaGasto.html', context)
+
+class GastoDeleteView(View):
+    def get(self, request, pk, *args, **kwargs):
+        gasto = Gasto.objects.get(pk=pk)
+        context = { 'gasto': gasto, }
+        return render(request, 'gastos/apagaGasto.html', context)
+    
+    def post(self, request, pk, *args, **kwargs):
+        gasto =  Gasto.objects.get(pk=pk)
+        gasto.delete()
+        print("Removendo o gasto...")
+        return HttpResponseRedirect(reverse_lazy('gastos:lista-gastos'))
