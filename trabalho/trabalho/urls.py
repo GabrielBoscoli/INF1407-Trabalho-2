@@ -21,5 +21,6 @@ from django.urls.conf import include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('gastos/', include('gastos.urls')),
-    path('accounts/', views.homeSec, name='sec-home')
+    path('accounts/', views.homeSec, name='sec-home'),
+    path('accounts/registro/', views.registro, name='sec-registro'),
 ]
