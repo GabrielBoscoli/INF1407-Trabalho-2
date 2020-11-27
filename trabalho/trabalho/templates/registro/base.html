@@ -20,6 +20,7 @@
         {% else %}
         | <a href="{% url 'sec-logout' %}">Logout</a>
         | <a href="{% url 'sec-password_change' %}">Trocar senha</a>
+        | <a href="{% url 'sec-completaDadosUsuario' pk=user.id %}">Perfil</a>
         {% endif %}
         | Você é {% firstof user.username "um visitante" %}
     </div>
