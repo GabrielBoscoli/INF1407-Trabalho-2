@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
 
 def homeSec(request):
     return render(request, "registro/homeSec.html")
@@ -14,3 +15,7 @@ def registro(request):
         formulario = UserCreationForm()
     context = { 'form': formulario, }
     return render(request, 'registro/registro.html', context)
+
+@login_required
+def paginaSecreta(request):
+    return render(request, 'registro/paginaSecreta.html')
