@@ -18,8 +18,9 @@
         | <a href="{% url 'sec-registro' %}">Registrar</a>
         | <a href="{% url 'sec-login' %}?next={% url 'sec-paginaSecreta' %}">Login</a>
         {% else %}
-        | Você é {% firstof user.username "visitante" %}
+        | <a href="{% url 'sec-logout' %}">Logout</a>
         {% endif %}
+        | Você é {% firstof user.username "um visitante" %}
     </div>
     <hr>{% block content %}{% endblock %}
 </body>

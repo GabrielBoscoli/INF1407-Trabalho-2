@@ -18,6 +18,8 @@ from django.urls import path
 from trabalho import views
 from django.urls.conf import include
 from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LogoutView
+from django.urls.base import reverse_lazy
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,4 +28,5 @@ urlpatterns = [
     path('accounts/registro/', views.registro, name='sec-registro'),
     path('accounts/login/', LoginView.as_view(template_name='registro/login.html',), name='sec-login'),
     path('accounts/profile/', views.paginaSecreta, name='sec-paginaSecreta'),
+    path('logout/', LogoutView.as_view(next_page=reverse_lazy('sec-home'),), name='sec-logout'),
 ]
