@@ -17,8 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from trabalho import views
 from django.urls.conf import include
-from django.contrib.auth.views import LoginView
-from django.contrib.auth.views import LogoutView
+from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView, PasswordChangeDoneView
 from django.urls.base import reverse_lazy
 
 urlpatterns = [
@@ -29,4 +28,6 @@ urlpatterns = [
     path('accounts/login/', LoginView.as_view(template_name='registro/login.html',), name='sec-login'),
     path('accounts/profile/', views.paginaSecreta, name='sec-paginaSecreta'),
     path('logout/', LogoutView.as_view(next_page=reverse_lazy('sec-home'),), name='sec-logout'),
+    path('accounts/password_change/', PasswordChangeView.as_view(template_name='registro/password_change_form.html', success_url=reverse_lazy('sec-password_change_done'),), name='sec-password_change'),
+    path('accounts/password_change_done/', PasswordChangeDoneView.as_view(template_name='registro/password_change_done.html',), name='sec-password_change_done'),
 ]

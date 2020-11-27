@@ -19,6 +19,7 @@
         | <a href="{% url 'sec-login' %}?next={% url 'sec-paginaSecreta' %}">Login</a>
         {% else %}
         | <a href="{% url 'sec-logout' %}">Logout</a>
+        | <a href="{% url 'sec-password_change' %}">Trocar senha</a>
         {% endif %}
         | Você é {% firstof user.username "um visitante" %}
     </div>
