@@ -2,9 +2,10 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.views.generic.edit import UpdateView
+from django.contrib.auth.models import User
+from django.http import JsonResponse
 '''
 from django.urls.base import reverse_lazy
-from django.contrib.auth.models import User
 '''
 
 def homeSec(request):
@@ -24,6 +25,13 @@ def registro(request):
 @login_required
 def paginaSecreta(request):
     return render(request, 'registro/paginaSecreta.html')
+
+def verificaUsername(request):
+    username= request.GET.get("username", None)
+    resposta = {
+        'existe': User.objects.filter(username__iexact=username).exists()
+    }
+    return JsonResponse(resposta)
 
 # evita que usuários maliciosos modifiquem os dados de outro usuário
 class MeuUpdateView(UpdateView):
