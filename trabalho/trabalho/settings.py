@@ -13,11 +13,12 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 import os
 from dotenv import load_dotenv
-load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Connect the path with your '.env' file name
+load_dotenv(os.path.join(BASE_DIR, '.env.txt'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -130,5 +131,12 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'gastos/static'),
 ]
 
-# Email
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# SMTP Configuration
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'inf1407django@gmail.com'
+load_dotenv()
+EMAIL_HOST_PASSWORD = str(os.getenv('EMAIL_HOST_PASSWORD'))

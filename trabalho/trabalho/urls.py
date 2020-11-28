@@ -53,7 +53,7 @@ urlpatterns = [
                                    success_url=reverse_lazy('sec-password_reset_done'),
                                    email_template_name='registro/password_reset_email.html',
                                    subject_template_name='registro/password_reset_subject.txt',
-                                   from_email='webmaster@meslin.com.br',),
+                                   from_email='inf1407django@gmail.com',),
          name='password_reset'),
     path('accounts/password_reset_done/',
          PasswordResetDoneView.as_view(template_name='registro/password_reset_done.html',),
