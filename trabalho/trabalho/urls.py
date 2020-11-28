@@ -27,7 +27,7 @@ from django.contrib.auth.models import User
 urlpatterns = [
     path('', views.homeSec, name='sec-home'),
     path('admin/', admin.site.urls),
-    path('gastos/', include('gastos.urls')),
+    path('gastos/', include('gastos.urls', namespace='gastos')),
     path('accounts/', views.homeSec, name='sec-home'),
     path('accounts/registro/', views.registro, name='sec-registro'),
     path('accounts/login/', LoginView.as_view(template_name='registro/login.html',), name='sec-login'),
