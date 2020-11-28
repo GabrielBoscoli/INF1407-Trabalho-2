@@ -1,6 +1,10 @@
 {% extends 'registro/base.html' %}
 {% block title %}Homepage de Segurança{% endblock %}
 {% block content %}
-<h2>Página inicial de controle de acesso de usuário</h2>
-<h6>registro/homeSec.html</h6>
+<h2>Bem vindo(a) ao site criado para a disciplina INF1407.</h2>
+<p>A ideia do site é criar um ambiente para gerência de gastos pessoais.</p>
+<p>Nele, um usuário pode criar, atualizar, remover e consultar itens que constituíram seu gasto pessoal mensal.</p>
+<p>Portanto, para usar o site, você precisa estar cadastrado e logado.</p>
+<p>Para realizar o cadastro, clique <a href="{% url 'sec-registro' %}">aqui</a>.</p>
+<p>Para efetuar o login, clique <a href="{% url 'sec-login' %}?next={% url 'sec-paginaSecreta' %}">aqui</a>.</p>
 {% endblock %}
