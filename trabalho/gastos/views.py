@@ -4,16 +4,18 @@ from django.http.response import HttpResponseRedirect
 from django.urls.base import reverse_lazy
 from gastos.models import Gasto
 from gastos.forms import GastoModel2Form
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
-class GastoListView(View):
+class GastoListView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         gastos = Gasto.objects.all()
         context = { 'gastos': gastos, }
         return render(request, 'gastos/listaGastos.html', context)
     
-class GastoCreateView(View):
+class GastoCreateView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         context = { 'formulario': GastoModel2Form }
         return render(request, "gastos/criaGasto.html", context)
@@ -27,7 +29,7 @@ class GastoCreateView(View):
         else:
             return HttpResponseRedirect(reverse_lazy('gastos:cria-gasto'))
         
-class GastoUpdateView(View):
+class GastoUpdateView(LoginRequiredMixin, View):
     def get(self, request, pk, *args, **kwargs):
         gasto = Gasto.objects.get(pk=pk)
         formulario = GastoModel2Form(instance=gasto)
@@ -45,7 +47,7 @@ class GastoUpdateView(View):
             context = { 'pessoa': formulario, }
             return render(request, 'gastos/atualizaGasto.html', context)
 
-class GastoDeleteView(View):
+class GastoDeleteView(LoginRequiredMixin, View):
     def get(self, request, pk, *args, **kwargs):
         gasto = Gasto.objects.get(pk=pk)
         context = { 'gasto': gasto, }
