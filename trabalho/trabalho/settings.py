@@ -128,3 +128,6 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
     os.path.join(BASE_DIR, 'gastos/static'),
 ]
+
+# Email
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
