@@ -43,7 +43,7 @@ urlpatterns = [
          PasswordChangeDoneView.as_view(template_name='registro/password_change_done.html',),
          name='sec-password_change_done'),
     path('accounts/terminaRegistro/<int:pk>/',
-         UpdateView.as_view(template_name='registro/user_form.html',
+         views.MeuUpdateView.as_view(template_name='registro/user_form.html',
                             success_url=reverse_lazy('sec-home'),
                             model=User,
                             fields=['first_name','last_name','email',],),

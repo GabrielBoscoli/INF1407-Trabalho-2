@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import UpdateView
 from django.contrib.auth.models import User
 from django.http import JsonResponse
@@ -34,7 +35,7 @@ def verificaUsername(request):
     return JsonResponse(resposta)
 
 # evita que usuários maliciosos modifiquem os dados de outro usuário
-class MeuUpdateView(UpdateView):
+class MeuUpdateView(LoginRequiredMixin, UpdateView):
     '''
     template_name='registro/user_form.html'
     success_url=reverse_lazy('sec-home')
