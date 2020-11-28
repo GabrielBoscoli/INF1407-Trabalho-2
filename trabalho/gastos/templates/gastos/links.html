@@ -1,6 +1,25 @@
-<!--Para incluir esse fragmento de página HTML em uma página HTML use:{ % include 'gastos/links.html' % }-->
-<a href="/">Home-Page</a> |
-<a href="{% url 'gastos:home-gastos' %}">Página inicial</a> |
-<a href="{% url 'gastos:lista-gastos' %}">Listar gastos</a> |
-<a href="{% url 'gastos:cria-gasto' %}">Cadastrar gasto</a>
-<hr/>
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock%}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'geral/css/estilo.css' %}">
+    {% block head %}{% endblock %}
+</head>
+
+<body>
+    <h1>Gerência de Gastos</h1>
+    <h2>Controle seus gastos pessoais</h2>
+    <div>
+        <a href="{% url 'sec-home' %}">Página inicial de segurança</a> |
+        <a href="{% url 'gastos:lista-gastos' %}">Listar gastos</a> |
+        <a href="{% url 'gastos:cria-gasto' %}">Cadastrar gasto</a>
+        | Você é {% firstof user.username "um visitante" %}
+    </div>
+    <hr>{% block content %}{% endblock %}
+</body>
+
+</html>

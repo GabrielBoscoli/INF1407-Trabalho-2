@@ -1,30 +1,21 @@
-{% load static %}
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="UTF-8">
-    <title>Lista Gastos</title>
-    <link rel="stylesheet" href="{% static 'gastos/css/estilo.css' %}">
-</head>
-
-<body>{% include 'gastos/links.html' %}<h1>Lista de Gastos</h1>
-    <h6>listaGastos.html</h6>
-    <table>
-        <tr>
-            <th>Descrição</th>
-            <th>Custo</th>
-            <th>Data</th>
-        </tr>{% if gastos %}{% for gasto in gastos %}<tr>
-            <td>{{ gasto.descricao }}</td>
-            <td>{{ gasto.custo }}</td>
-            <td>{{ gasto.data }}</td>
-            <td><a href="{% url 'gastos:atualiza-gasto' pk=gasto.id %}">Atualizar</a>| <a
-                    href="{% url 'gastos:apaga-gasto' pk=gasto.id %}">Excluir</a></td>
-        </tr>{% endfor %}{% else %}<tr>
-            <thcolspan="5">Ainda não tem gastos cadastrados</th>
-        </tr>{% endif %}
-    </table>
-</body>
-
-</html>
+{% extends 'gastos/links.html' %}
+{% block title %}Lista Gastos{% endblock %}
+{% block content %}
+<h1>Lista de Gastos</h1>
+<h6>listaGastos.html</h6>
+<table>
+    <tr>
+        <th>Descrição</th>
+        <th>Custo</th>
+        <th>Data</th>
+    </tr>{% if gastos %}{% for gasto in gastos %}<tr>
+        <td>{{ gasto.descricao }}</td>
+        <td>{{ gasto.custo }}</td>
+        <td>{{ gasto.data }}</td>
+        <td><a href="{% url 'gastos:atualiza-gasto' pk=gasto.id %}">Atualizar</a>| <a
+                href="{% url 'gastos:apaga-gasto' pk=gasto.id %}">Excluir</a></td>
+    </tr>{% endfor %}{% else %}<tr>
+        <thcolspan="5">Ainda não tem gastos cadastrados</th>
+    </tr>{% endif %}
+</table>
+{% endblock %}
