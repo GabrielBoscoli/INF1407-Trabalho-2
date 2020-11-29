@@ -5,6 +5,6 @@
 <p>A ideia do site é criar um ambiente para gerência de gastos pessoais.</p>
 <p>Nele, um usuário pode criar, atualizar, remover e consultar itens que constituíram seu gasto pessoal mensal.</p>
 <p>Portanto, para usar o site, você precisa estar cadastrado e logado.</p>
-<p>Para realizar o cadastro, clique <a href="{% url 'sec-registro' %}">aqui</a>.</p>
-<p>Para efetuar o login, clique <a href="{% url 'sec-login' %}?next={% url 'sec-paginaSecreta' %}">aqui</a>.</p>
+<p>Para realizar o cadastro, clique <a href="{% url 'registro:sec-registro' %}">aqui</a>.</p>
+<p>Para efetuar o login, clique <a href="{% url 'registro:sec-login' %}?next={% url 'registro:sec-paginaSecreta' %}">aqui</a>.</p>
 {% endblock %}

@@ -5,7 +5,6 @@ from django.urls.base import reverse_lazy
 from gastos.models import Gasto
 from gastos.forms import GastoModel2Form
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
