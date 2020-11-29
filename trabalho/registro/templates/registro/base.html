@@ -17,7 +17,7 @@
         <a href="{% url 'registro:sec-home' %}">Página inicial de segurança</a>
         {% if not user.is_authenticated %}
         | <a href="{% url 'registro:sec-registro' %}">Registrar</a>
-        | <a href="{% url 'registro:sec-login' %}?next={% url 'sec-paginaSecreta' %}">Login</a>
+        | <a href="{% url 'registro:sec-login' %}?next={% url 'registro:sec-paginaSecreta' %}">Login</a>
         {% else %}
         | <a href="{% url 'registro:sec-logout' %}">Logout</a>
         | <a href="{% url 'registro:sec-password_change' %}">Trocar senha</a>
