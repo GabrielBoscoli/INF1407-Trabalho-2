@@ -71,7 +71,13 @@ class GastoCreateView(LoginRequiredMixin, View):
         
 class GastoUpdateView(LoginRequiredMixin, View):
     def get(self, request, pk, *args, **kwargs):
-        gasto = Gasto.objects.get(pk=pk)
+        gasto = None
+        try:
+            gasto = Gasto.objects.get(pk=pk)
+        except:
+            return HttpResponseRedirect(reverse_lazy('gastos:lista-gastos'))
+        if gasto and gasto.usuario != request.user:
+            return HttpResponseRedirect(reverse_lazy('gastos:lista-gastos'))
         formulario = GastoModel2Form(instance=gasto)
         context = {'gasto': formulario, }
         return render(request, 'gastos/atualizaGasto.html', context)
