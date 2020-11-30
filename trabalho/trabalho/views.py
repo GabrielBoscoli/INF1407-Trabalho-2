@@ -2,14 +2,15 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic.edit import UpdateView
 from django.contrib.auth.models import User
-from django.http import JsonResponse
-'''
+from django.views.generic.edit import UpdateView
 from django.urls.base import reverse_lazy
-'''
+from django.http import JsonResponse
+from django.http.response import HttpResponseRedirect
 
 def homeSec(request):
+    if(request.user.is_authenticated):
+        return HttpResponseRedirect(reverse_lazy('gastos:lista-gastos'))
     return render(request, "registro/homeSec.html")
 
 def registro(request):
@@ -36,13 +37,6 @@ def verificaUsername(request):
 
 # evita que usuários maliciosos modifiquem os dados de outro usuário
 class MeuUpdateView(LoginRequiredMixin, UpdateView):
-    '''
-    template_name='registro/user_form.html'
-    success_url=reverse_lazy('sec-home')
-    model=User
-    fields=['first_name','last_name','email',]
-    '''
-    
     def get(self, request, pk, *args, **kwargs):
         if request.user.id == pk:
             return super().get(request, pk, args, kwargs)
