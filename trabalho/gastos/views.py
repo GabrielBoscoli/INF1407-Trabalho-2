@@ -11,7 +11,7 @@ from django.db.models import Sum, Avg, Max
 
 class GastoListView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
-        gastos = Gasto.objects.filter(usuario=request.user)
+        gastos = Gasto.objects.filter(usuario=request.user).order_by('-data')
         numero_entradas = gastos.count()
         custo_total = gastos.aggregate(Sum('custo')).get('custo__sum', None)
         custo_entrada_media = gastos.aggregate(Avg('custo')).get('custo__avg', None)
