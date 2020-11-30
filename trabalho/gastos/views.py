@@ -32,8 +32,8 @@ class GastoMonthListView(LoginRequiredMixin, View):
         meses_str = []
         for mes in meses:
             meses_str.append(mes.strftime("%B de %Y"))
-        context = { 'meses': meses,
-                   'meses_str': meses_str, }
+        meses_zip = zip(meses, meses_str)
+        context = { 'meses': meses_zip, }
         return render(request, 'gastos/listaMeses.html', context)
     
 class GastoListMonthView(LoginRequiredMixin, View):

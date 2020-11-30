@@ -7,8 +7,8 @@
 {% block content %}
 <h2>Meses com gastos cadastrados:</h2>
 <ul>
-		{% for mes in meses_str %}
-		<li><a href="{% url 'gastos:gastos-mensais' month=12 year=2021 %}">{{ mes }}</a></li>
+		{% for mes, mes_str in meses %}
+		<li><a href="{% url 'gastos:gastos-mensais' month=mes.month year=mes.year %}">{{ mes_str }}</a></li>
 		{% empty %}
 		<li>Ainda não existem gastos cadastrados</li>
 		{% endfor %}
