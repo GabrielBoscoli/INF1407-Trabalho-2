@@ -65,4 +65,5 @@ urlpatterns = [
          PasswordResetCompleteView.as_view(template_name='registro/password_reset_complete.html'),
          name='sec-password_reset_complete'),
     path('accounts/verificaUsername', views.verificaUsername, name='sec-verificaUsername'),
+    path('accounts/verificaEmail', views.verificaEmail, name='sec-verificaEmail'),
 ]

@@ -29,10 +29,22 @@ def paginaSecreta(request):
     return render(request, 'registro/paginaSecreta.html')
 
 def verificaUsername(request):
-    username= request.GET.get("username", None)
+    username = request.GET.get("username", None)
     resposta = {
-        'existe': User.objects.filter(username__iexact=username).exists()
+        # nao pode ter iexact pq o username não é case sensitive
+        'existe': User.objects.filter(username=username).exists()
     }
+    return JsonResponse(resposta)
+
+def verificaEmail(request):
+    email = request.GET.get("email", None)
+    user = User.objects.get(email__iexact=email)
+    existe = False
+    if user:
+        existe = True
+        if request.user == user:
+            existe = False
+    resposta = {'existe': existe,}
     return JsonResponse(resposta)
 
 # evita que usuários maliciosos modifiquem os dados de outro usuário
