@@ -6,6 +6,7 @@ from gastos.models import Gasto
 from gastos.forms import GastoModel2Form
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Sum, Avg, Max
+from calendar import month_name
 
 # Create your views here.
 
@@ -23,6 +24,35 @@ class GastoListView(LoginRequiredMixin, View):
                    'maior_custo': maior_custo,
                    }
         return render(request, 'gastos/listaGastos.html', context)
+    
+class GastoMonthListView(LoginRequiredMixin, View):
+    def get(self, request, *args, **kwargs):
+        gastos = Gasto.objects.filter(usuario=request.user)
+        meses = gastos.dates('data', 'month', order='DESC')
+        meses_str = []
+        for mes in meses:
+            meses_str.append(mes.strftime("%B de %Y"))
+        context = { 'meses': meses,
+                   'meses_str': meses_str, }
+        return render(request, 'gastos/listaMeses.html', context)
+    
+class GastoListMonthView(LoginRequiredMixin, View):
+    def get(self, request, month, year, *args, **kwargs):
+        gastos = Gasto.objects.filter(usuario=request.user,
+                                      data__year=year,
+                                      data__month=month).order_by('-data')
+        numero_entradas = gastos.count()
+        custo_total = gastos.aggregate(Sum('custo')).get('custo__sum', None)
+        custo_entrada_media = gastos.aggregate(Avg('custo')).get('custo__avg', None)
+        maior_custo = gastos.aggregate(Max('custo')).get('custo__max', None)
+        context = { 'gastos': gastos,
+                   'numero_entradas': numero_entradas,
+                   'custo_total': custo_total,
+                   'custo_entrada_media': custo_entrada_media,
+                   'maior_custo': maior_custo,
+                   'mes': month_name[month],
+                   'ano': year, }
+        return render(request, 'gastos/listaGastosMensal.html', context)
     
 class GastoCreateView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
