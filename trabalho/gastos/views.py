@@ -5,13 +5,23 @@ from django.urls.base import reverse_lazy
 from gastos.models import Gasto
 from gastos.forms import GastoModel2Form
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Sum, Avg, Max
 
 # Create your views here.
 
 class GastoListView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         gastos = Gasto.objects.filter(usuario=request.user)
-        context = { 'gastos': gastos, }
+        numero_entradas = gastos.count()
+        custo_total = gastos.aggregate(Sum('custo')).get('custo__sum', None)
+        custo_entrada_media = gastos.aggregate(Avg('custo')).get('custo__avg', None)
+        maior_custo = gastos.aggregate(Max('custo')).get('custo__max', None)
+        context = { 'gastos': gastos,
+                   'numero_entradas': numero_entradas,
+                   'custo_total': custo_total,
+                   'custo_entrada_media': custo_entrada_media,
+                   'maior_custo': maior_custo,
+                   }
         return render(request, 'gastos/listaGastos.html', context)
     
 class GastoCreateView(LoginRequiredMixin, View):

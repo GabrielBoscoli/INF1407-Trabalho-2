@@ -5,6 +5,21 @@
 <link rel="stylesheet" href="{% static 'gastos/css/listaGastos.css' %}">
 {% endblock %}
 {% block content %}
+<h1>Todos os gastos:</h1>
+<table border="1">
+    <tr>
+    <th>Número de entradas</th>
+    <th>Custo total</th>
+    <th>Custo médio por entrada</th>
+    <th>Maior custo</th>
+    </tr>
+    <tr>
+        <td>{{ numero_entradas }}</td>
+        <td>{{ custo_total }}</td>
+        <td>{{ custo_entrada_media }}</td>
+        <td>{{ maior_custo }}</td>
+    </tr>
+</table>
 <table border="1">
     <tr>
     <th>Descrição</th>
@@ -13,7 +28,6 @@
     <th>Operações</th>
     </tr>
     {% for gasto in gastos %}
-		
     <tr>
         <td>{{ gasto.descricao }}</td>
         <td>{{ gasto.custo }}</td>
@@ -23,7 +37,6 @@
             <a href="{% url 'gastos:apaga-gasto' pk=gasto.id %}" class='btn btn-danger'>Excluir</a>
         </td>
     </tr>
-		
     {% empty %}
     <tr>
         <th colspan="6">
