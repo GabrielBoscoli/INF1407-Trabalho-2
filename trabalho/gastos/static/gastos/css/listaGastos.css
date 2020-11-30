@@ -1,4 +1,13 @@
 th, td {
-    text-align: center;
-    padding: 10px;
+	text-align: center;
+	padding: 10px;
+}
+table {
+	border: 1px solid black;
+	margin: 5px;
+}
+caption {
+	text-align: center;
+	caption-side: top;
+	font-size: 20px;
 }
