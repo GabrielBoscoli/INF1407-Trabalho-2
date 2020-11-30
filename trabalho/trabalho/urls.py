@@ -21,7 +21,6 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.views import PasswordChangeView, PasswordChangeDoneView, PasswordResetView
 from django.contrib.auth.views import PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
 from django.urls.base import reverse_lazy
-from django.views.generic.edit import UpdateView
 from django.contrib.auth.models import User
 
 urlpatterns = [
