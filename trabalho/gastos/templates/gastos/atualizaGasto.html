@@ -3,7 +3,7 @@
 {% block content %}
 <h1>Atualização de gastos</h1>
 <form method="POST" class="formulario">
-  {% csrf_token%}
+  {% csrf_token %}
   <table>
     {{ gasto.as_table }}
     <tr>

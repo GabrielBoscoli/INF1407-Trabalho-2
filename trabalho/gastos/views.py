@@ -5,13 +5,12 @@ from django.urls.base import reverse_lazy
 from gastos.models import Gasto
 from gastos.forms import GastoModel2Form
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
 class GastoListView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
-        gastos = Gasto.objects.all()
+        gastos = Gasto.objects.filter(usuario=request.user)
         context = { 'gastos': gastos, }
         return render(request, 'gastos/listaGastos.html', context)
     
@@ -24,6 +23,7 @@ class GastoCreateView(LoginRequiredMixin, View):
         formulario = GastoModel2Form(request.POST)
         if formulario.is_valid():
             gasto = formulario.save()
+            gasto.usuario = request.user
             gasto.save()
             return HttpResponseRedirect(reverse_lazy('gastos:lista-gastos'))
         else:
@@ -44,7 +44,7 @@ class GastoUpdateView(LoginRequiredMixin, View):
             gasto.save()
             return HttpResponseRedirect(reverse_lazy('gastos:lista-gastos'))
         else:
-            context = { 'pessoa': formulario, }
+            context = { 'gasto': formulario, }
             return render(request, 'gastos/atualizaGasto.html', context)
 
 class GastoDeleteView(LoginRequiredMixin, View):

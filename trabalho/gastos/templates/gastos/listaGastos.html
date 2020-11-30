@@ -13,6 +13,7 @@
     <th>Operações</th>
     </tr>
     {% for gasto in gastos %}
+		
     <tr>
         <td>{{ gasto.descricao }}</td>
         <td>{{ gasto.custo }}</td>
@@ -22,6 +23,7 @@
             <a href="{% url 'gastos:apaga-gasto' pk=gasto.id %}" class='btn btn-danger'>Excluir</a>
         </td>
     </tr>
+		
     {% empty %}
     <tr>
         <th colspan="6">
