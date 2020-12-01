@@ -12,21 +12,21 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
-from dotenv import load_dotenv
+#from dotenv import load_dotenv
 from locale import setlocale, LC_ALL
-load_dotenv()
+#load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Connect the path with your '.env' file name
-load_dotenv(os.path.join(BASE_DIR, '.env.txt'))
+#load_dotenv(os.path.join(BASE_DIR, '.env.txt'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = str(os.getenv('SECRET_KEY'))
+SECRET_KEY = 't@lcl$4jyo$_iolcunhy6(2r)hhh_m6iiwl_4pz=)hke5ju7=u'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -142,7 +142,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'inf1407django@gmail.com'
-EMAIL_HOST_PASSWORD = str(os.getenv('EMAIL_HOST_PASSWORD'))
+EMAIL_HOST_PASSWORD = 'senha123!@#'
 
 # Configure DjangoApp for Heroku.
 
