@@ -15,5 +15,7 @@ urlpatterns = [
     path('atualiza/<int:pk>/', views.GastoUpdateView.as_view(), name='atualiza-gasto'),
     path('apaga/<int:pk>/', views.GastoDeleteView.as_view(), name='apaga-gasto'),
     path('lista/', views.GastoListView.as_view(), name="lista-gastos"),
+    path('lista-mensal/', views.GastoMonthListView.as_view(), name="lista-gastos-mensal"),
+    path('lista-mensal/<int:month>/<int:year>', views.GastoListMonthView.as_view(), name="gastos-mensais"),
     path('', views.GastoListView.as_view(), name="home-gastos"),
 ]

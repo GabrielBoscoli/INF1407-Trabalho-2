@@ -1,13 +1,15 @@
-{% extends 'gastos/links.html' %}
+{% extends 'trabalho/base.html' %}
 {% block title %}Cria Gasto{% endblock %}
 {% block content %}
 <h1>Cria um gasto</h1>
-<h6>criaGasto.html</h6>
 <form action="" method="POST">
   {% csrf_token %}
   <table class="formulario">
     {{ formulario.as_table }}
+		<tr>
+      <td></td>
+      <td><input type="submit" value="Cria Gasto" /></td>
+    </tr>
   </table>
-  <button type="submit">Cria gasto</button>
 </form>
 {% endblock %}

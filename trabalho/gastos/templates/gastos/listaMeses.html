@@ -1,0 +1,16 @@
+{% extends 'trabalho/base.html' %}
+{% load static %}
+{% block title %}Gasto Mensal{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'gastos/css/listaGastos.css' %}">
+{% endblock %}
+{% block content %}
+<h2>Meses com gastos cadastrados:</h2>
+<ul>
+		{% for mes, mes_str in meses %}
+		<li><a href="{% url 'gastos:gastos-mensais' month=mes.month year=mes.year %}">{{ mes_str }}</a></li>
+		{% empty %}
+		<li>Ainda não existem gastos cadastrados</li>
+		{% endfor %}
+</ul
+{% endblock %}

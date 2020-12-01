@@ -1,4 +1,4 @@
-{% extends 'registro/base.html' %}
+{% extends 'trabalho/base.html' %}
 {% block title %}Login{% endblock %}
 {% block content %}
 <h2>Página de Login</h2>
@@ -10,7 +10,14 @@
       <td></td>
       <td><input type="submit" value="Login" /></td>
     </tr>
+		<tr>
+      <td></td>
+      <td><a href="{% url 'password_reset' %}">Esqueceu a senha?</a></td>
+    </tr>
   </table>
+<<<<<<< HEAD:trabalho/registro/templates/registro/login.html
   <a href="{% url 'registro:password_reset' %}">Esqueceu a senha?</a>
+=======
+>>>>>>> 23c7312991bc1f3b7ba792e1d95e8ae1c7a3111c:trabalho/trabalho/templates/registro/login.html
 </form>
 {% endblock %}

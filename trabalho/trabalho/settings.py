@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 import os
 from dotenv import load_dotenv
+from locale import setlocale, LC_ALL
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -111,6 +113,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
+setlocale(LC_ALL, 'pt_BR.UTF-8')
+
 LANGUAGE_CODE = 'pt-BR'
 
 TIME_ZONE = 'America/Sao_Paulo'
@@ -139,5 +143,4 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'inf1407django@gmail.com'
-load_dotenv()
 EMAIL_HOST_PASSWORD = str(os.getenv('EMAIL_HOST_PASSWORD'))
