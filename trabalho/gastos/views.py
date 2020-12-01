@@ -15,13 +15,19 @@ class GastoListView(LoginRequiredMixin, View):
         gastos = Gasto.objects.filter(usuario=request.user).order_by('-data')
         numero_entradas = gastos.count()
         custo_total = gastos.aggregate(Sum('custo')).get('custo__sum', None)
+        if custo_total:
+            custo_total = "{:.2f}".format(custo_total)
         custo_entrada_media = gastos.aggregate(Avg('custo')).get('custo__avg', None)
+        if custo_entrada_media:
+            custo_entrada_media = "{:.2f}".format(custo_entrada_media)
         maior_custo = gastos.aggregate(Max('custo')).get('custo__max', None)
+        if maior_custo:
+            maior_custo = "{:.2f}".format(maior_custo)
         context = { 'gastos': gastos,
                    'numero_entradas': numero_entradas,
-                   'custo_total': "{:.2f}".format(custo_total),
-                   'custo_entrada_media': "{:.2f}".format(custo_entrada_media),
-                   'maior_custo': "{:.2f}".format(maior_custo),
+                   'custo_total': custo_total,
+                   'custo_entrada_media': custo_entrada_media,
+                   'maior_custo': maior_custo,
                    }
         return render(request, 'gastos/listaGastos.html', context)
     
@@ -43,13 +49,19 @@ class GastoListMonthView(LoginRequiredMixin, View):
                                       data__month=month).order_by('-data')
         numero_entradas = gastos.count()
         custo_total = gastos.aggregate(Sum('custo')).get('custo__sum', None)
+        if custo_total:
+            custo_total = "{:.2f}".format(custo_total)
         custo_entrada_media = gastos.aggregate(Avg('custo')).get('custo__avg', None)
+        if custo_entrada_media:
+            custo_entrada_media = "{:.2f}".format(custo_entrada_media)
         maior_custo = gastos.aggregate(Max('custo')).get('custo__max', None)
+        if maior_custo:
+            maior_custo = "{:.2f}".format(maior_custo)
         context = { 'gastos': gastos,
                    'numero_entradas': numero_entradas,
-                   'custo_total': "{:.2f}".format(custo_total),
-                   'custo_entrada_media': "{:.2f}".format(custo_entrada_media),
-                   'maior_custo': "{:.2f}".format(maior_custo),
+                   'custo_total': custo_total,
+                   'custo_entrada_media': custo_entrada_media,
+                   'maior_custo': maior_custo,
                    'mes': month_name[month],
                    'ano': year, }
         return render(request, 'gastos/listaGastosMensal.html', context)

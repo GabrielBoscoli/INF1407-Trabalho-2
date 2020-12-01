@@ -6,6 +6,7 @@
 {% endblock %}
 {% block content %}
 <h2>Todos os gastos:</h2>
+{% if gastos %}
 <table>
 		<caption>Visão geral</caption>
     <tr>
@@ -21,6 +22,7 @@
         <td>{{ maior_custo }}</td>
     </tr>
 </table>
+{% endif %}
 <table border="1">
 		<caption>Gastos</caption>
     <tr>
