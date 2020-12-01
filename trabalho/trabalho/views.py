@@ -30,9 +30,13 @@ def paginaSecreta(request):
 
 def verificaUsername(request):
     username = request.GET.get("username", None)
+    vazio = True
+    if username:
+        vazio = False
     resposta = {
-        # nao pode ter iexact pq o username não é case sensitive
-        'existe': User.objects.filter(username=username).exists()
+        # nao pode ter iexact pq o username é case sensitive
+        'existe': User.objects.filter(username=username).exists(),
+        'vazio': vazio,
     }
     return JsonResponse(resposta)
 
@@ -46,8 +50,11 @@ def verificaEmail(request):
         existe = False
     if user and request.user == user:
         existe = False
-    #criar campo blank
-    resposta = {'existe': existe,}
+    vazio = True
+    if email:
+        vazio = False
+    resposta = {'existe': existe,
+                'vazio': vazio, }
     return JsonResponse(resposta)
 
 # evita que usuários maliciosos modifiquem os dados de outro usuário

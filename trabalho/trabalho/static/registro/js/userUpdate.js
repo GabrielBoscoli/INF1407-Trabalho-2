@@ -23,6 +23,8 @@ onload = function() {
 												campoEmail.style= "border: 1px solid#00FF00";
 												document.getElementById('idMsgErro').replaceChild(document.createTextNode("Email disponível"), document.getElementById('idMsgErro').firstChild);
 										}									
+									} else {
+												document.getElementById('idMsgErro').replaceChild(document.createTextNode("\u200b"), document.getElementById('idMsgErro').firstChild);
 									}
 							}
 					}
