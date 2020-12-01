@@ -7,21 +7,7 @@
 {% block content %}
 <h2>Todos os gastos:</h2>
 {% if gastos %}
-<table>
-		<caption>Visão geral</caption>
-    <tr>
-    <th>Número de entradas</th>
-    <th>Custo total</th>
-    <th>Custo médio por entrada</th>
-    <th>Maior custo</th>
-    </tr>
-    <tr>
-        <td>{{ numero_entradas }}</td>
-        <td>{{ custo_total }}</td>
-        <td>{{ custo_entrada_media }}</td>
-        <td>{{ maior_custo }}</td>
-    </tr>
-</table>
+{% include 'gastos/visaoGeral.html' %}
 {% endif %}
 <table border="1">
 		<caption>Gastos</caption>
