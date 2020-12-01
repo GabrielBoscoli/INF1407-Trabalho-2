@@ -19,9 +19,9 @@ class GastoListView(LoginRequiredMixin, View):
         maior_custo = gastos.aggregate(Max('custo')).get('custo__max', None)
         context = { 'gastos': gastos,
                    'numero_entradas': numero_entradas,
-                   'custo_total': custo_total,
-                   'custo_entrada_media': custo_entrada_media,
-                   'maior_custo': maior_custo,
+                   'custo_total': "{:.2f}".format(custo_total),
+                   'custo_entrada_media': "{:.2f}".format(custo_entrada_media),
+                   'maior_custo': "{:.2f}".format(maior_custo),
                    }
         return render(request, 'gastos/listaGastos.html', context)
     
@@ -47,9 +47,9 @@ class GastoListMonthView(LoginRequiredMixin, View):
         maior_custo = gastos.aggregate(Max('custo')).get('custo__max', None)
         context = { 'gastos': gastos,
                    'numero_entradas': numero_entradas,
-                   'custo_total': custo_total,
-                   'custo_entrada_media': custo_entrada_media,
-                   'maior_custo': maior_custo,
+                   'custo_total': "{:.2f}".format(custo_total),
+                   'custo_entrada_media': "{:.2f}".format(custo_entrada_media),
+                   'maior_custo': "{:.2f}".format(maior_custo),
                    'mes': month_name[month],
                    'ano': year, }
         return render(request, 'gastos/listaGastosMensal.html', context)
