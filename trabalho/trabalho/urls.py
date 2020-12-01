@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from trabalho import views
+from trabalho.forms import UniquEmailForm
 from django.urls.conf import include
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.views import PasswordChangeView, PasswordChangeDoneView, PasswordResetView
@@ -45,7 +46,7 @@ urlpatterns = [
          views.MeuUpdateView.as_view(template_name='registro/user_form.html',
                             success_url=reverse_lazy('sec-home'),
                             model=User,
-                            fields=['first_name','last_name','email',],),
+                            form_class=UniquEmailForm,),
          name='sec-completaDadosUsuario'),
     path('accounts/password_reset/',
          PasswordResetView.as_view(template_name='registro/password_reset_form.html',

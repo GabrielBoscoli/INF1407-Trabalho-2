@@ -15,7 +15,7 @@ class GastoModel2Form(forms.ModelForm):
     class Meta:
         # usa o model de Gasto
         model = Gasto
-        # usa todos os atributos do model
+        # usa apenas alguns atributos de gasto
         fields = [
             'descricao',
             'custo',
