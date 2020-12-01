@@ -15,8 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from trabalho import views
-from trabalho.forms import UniquEmailForm
+from registro import views
+from registro.forms import UniquEmailForm
 from django.urls.conf import include
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.views import PasswordChangeView, PasswordChangeDoneView, PasswordResetView
