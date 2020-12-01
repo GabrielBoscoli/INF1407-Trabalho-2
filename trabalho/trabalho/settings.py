@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     # incluidos
     'trabalho',
     'gastos',
+    'registro'
 ]
 
 MIDDLEWARE = [
