@@ -79,7 +79,6 @@ class GastoCreateView(LoginRequiredMixin, View):
             gasto.save()
             return HttpResponseRedirect(reverse_lazy('gastos:lista-gastos'))
         else:
-            #return HttpResponseRedirect(reverse_lazy('gastos:cria-gasto'))
             context = { 'formulario': formulario, }
             return render(request, 'gastos/criaGasto.html', context)
         
