@@ -46,6 +46,7 @@ def verificaEmail(request):
         existe = False
     if user and request.user == user:
         existe = False
+    #criar campo blank
     resposta = {'existe': existe,}
     return JsonResponse(resposta)
 

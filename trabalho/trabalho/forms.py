@@ -14,8 +14,8 @@ class UniquEmailForm(forms.ModelForm):
            usuario = User.objects.get(email__iexact=email)
        except:
            return self.cleaned_data
-       if usuario and usuario != self.usuario:
-           raise ValidationError("Email já cadastrado", code='invalid')
+       if usuario and usuario != self.usuario and email:
+           raise ValidationError({'email': "Email já cadastrado",}, code='invalid')
        return self.cleaned_data
     
     class Meta:
