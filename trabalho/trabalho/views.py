@@ -38,12 +38,14 @@ def verificaUsername(request):
 
 def verificaEmail(request):
     email = request.GET.get("email", None)
-    user = User.objects.get(email__iexact=email)
-    existe = False
-    if user:
-        existe = True
-        if request.user == user:
-            existe = False
+    user = None
+    existe = True
+    try:
+        user = User.objects.get(email__iexact=email)
+    except:
+        existe = False
+    if user and request.user == user:
+        existe = False
     resposta = {'existe': existe,}
     return JsonResponse(resposta)
 
